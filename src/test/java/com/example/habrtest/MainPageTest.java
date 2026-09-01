@@ -13,6 +13,8 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 public class MainPageTest {
     private WebDriver driver;
@@ -33,15 +35,29 @@ public class MainPageTest {
     public void tearDown() {driver.quit();}
 
     @Test
-    public void changeLogTest() {
+    public void avtorTest() {
 
         WebElement userIcon = driver.findElement(By.cssSelector("#app > div > div.tm-footer-menu > div > div > div:nth-child(3) > div > ul > li:nth-child(1) > a"));
         userIcon.click();
 
-        WebElement rulesLink = driver.findElement(By.xpath("//*[contains(text(), 'Правила сайта')]"));
-        rulesLink.click();
+        WebElement tablink = driver.findElement(By.xpath("//*[@id='app']/div/header/div[2]/div/a[contains(text(), 'Все потоки')]"));
+                tablink.click();
 
-        assertTrue(driver.findElement(By.xpath("//*[@id='app']/div/div[3]/main/div/div/div/div[1]/div/div[2]/div[1]/div[2]/div/span[5]/a")).isDisplayed(),  "Changelog не найден");
+        assertTrue(driver.findElement(By.xpath("//*[@id='app']/div/div[3]/main/div/div/div/div[1]/div/div[2]/div[1]/div[2]/div/span[5]/a")).isDisplayed(),  "Авторы не найден");
+
+    }
+
+
+    @Test
+
+    public void companyTest() {
+        WebElement userIcon = driver.findElement(By.cssSelector("#app > div > div.tm-footer-menu > div > div > div:nth-child(3) > div > ul > li:nth-child(1) > a"));
+        userIcon.click();
+
+        WebElement tablink = driver.findElement(By.xpath("//*[@id='app']/div/header/div[2]/div/a[contains(text(), 'Все потоки')]"));
+        tablink.click();
+
+        assertTrue(driver.findElement(By.xpath("//*[@id='app']/div/div[3]/main/div/div/div/div[1]/div/div[2]/div[1]/div[2]/div/span[5]/a")).isDisplayed(),  "Компании не найден");
 
     }
 }
